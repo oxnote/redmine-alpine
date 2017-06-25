@@ -4,22 +4,22 @@ if Gem::Version.new(Bundler::VERSION) < Gem::Version.new('1.5.0')
   abort "Redmine requires Bundler 1.5.0 or higher (you're using #{Bundler::VERSION}).\nPlease update with 'gem update bundler'."
 end
 
-gem "rails", "4.2.7.1"
-gem "addressable", "2.4.0" if RUBY_VERSION < "2.0"
-gem "jquery-rails", "~> 3.1.4"
+gem "rails", "4.8.0"
+gem "addressable", "2.5.1" if RUBY_VERSION < "2.0"
+gem "jquery-rails", "~> 4.3.1"
 gem "coderay", "~> 1.1.1"
-gem "builder", ">= 3.0.4"
-gem "request_store", "1.0.5"
-gem "mime-types", (RUBY_VERSION >= "2.0" ? "~> 3.0" : "~> 2.99")
+gem "builder", ">= 3.2.3"
+gem "request_store", "1.3.2"
+gem "mime-types", (RUBY_VERSION >= "2.0" ? "~> 3.1" : "~> 2.99")
 gem "protected_attributes"
 gem "actionpack-action_caching"
 gem "actionpack-xml_parser"
 gem "roadie-rails"
 gem "mimemagic"
 
-gem "nokogiri", "~> 1.6.8"
-gem "i18n", "~> 0.7.0"
-gem "ffi", "1.9.14", :platforms => :mingw if RUBY_VERSION < "2.0"
+gem "nokogiri", "~> 1.8.0"
+gem "i18n", "~> 0.8.4"
+gem "ffi", "1.9.18", :platforms => :mingw if RUBY_VERSION < "2.0"
 
 # Request at least rails-html-sanitizer 1.0.3 because of security advisories 
 gem "rails-html-sanitizer", ">= 1.0.3"
@@ -47,7 +47,7 @@ platforms :mri, :mingw, :x64_mingw do
 
   # Optional Markdown support, not for JRuby
   group :markdown do
-    gem "redcarpet", "~> 3.3.2"
+    gem "redcarpet", "~> 3.4.0"
   end
 end
 
@@ -69,20 +69,20 @@ if File.exist?(database_file)
     adapters.each do |adapter|
       case adapter
       when 'mysql2'
-        gem "mysql2", "~> 0.3.11", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "mysql2", "~> 0.4.6", :platforms => [:mri, :mingw, :x64_mingw]
         gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
       when 'mysql'
         gem "activerecord-jdbcmysql-adapter", :platforms => :jruby
       when /postgresql/
-        gem "pg", "~> 0.18.1", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "pg", "~> 0.21.0", :platforms => [:mri, :mingw, :x64_mingw]
         gem "activerecord-jdbcpostgresql-adapter", :platforms => :jruby
       when /sqlite3/
-        gem "sqlite3", (RUBY_VERSION < "2.0" && RUBY_PLATFORM =~ /mingw/ ? "1.3.12" : "~>1.3.12"),
+        gem "sqlite3", (RUBY_VERSION < "2.0" && RUBY_PLATFORM =~ /mingw/ ? "1.3.12" : "~>1.3.13"),
                        :platforms => [:mri, :mingw, :x64_mingw]
         gem "jdbc-sqlite3", ">= 3.8.10.1", :platforms => :jruby
         gem "activerecord-jdbcsqlite3-adapter", :platforms => :jruby
       when /sqlserver/
-        gem "tiny_tds", "~> 0.6.2", :platforms => [:mri, :mingw, :x64_mingw]
+        gem "tiny_tds", "~> 1.3.0", :platforms => [:mri, :mingw, :x64_mingw]
         gem "activerecord-sqlserver-adapter", :platforms => [:mri, :mingw, :x64_mingw]
       else
         warn("Unknown database adapter `#{adapter}` found in config/database.yml, use Gemfile.local to load your own database gems")
